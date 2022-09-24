@@ -4,3 +4,11 @@ obj
 *.code-workspace
 *.app/
 *.xcodeproj/
+example/example.xcodeproj/project.pbxproj
+example/example.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+example/example.xcodeproj/project.xcworkspace/xcuserdata/danbuzzo.xcuserdatad/UserInterfaceState.xcuserstate
+example/example.xcodeproj/xcshareddata/xcschemes/example Debug.xcscheme
+example/example.xcodeproj/xcshareddata/xcschemes/example Release.xcscheme
+*.xcscheme
+*.xcsettings
+*.pbxproj
