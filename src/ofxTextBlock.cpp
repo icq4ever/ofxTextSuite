@@ -34,7 +34,13 @@ ofxTextBlock::~ofxTextBlock()
 void ofxTextBlock::init(string fontLocation, float fontSize){
 
     // defaultFont.loadFont(fontLocation, fontSize, true, true);
-    defaultFont.load(fontLocation, fontSize, true, true);
+    defaultFontSettings = new ofTrueTypeFontSettings(fontLocation, fontSize);
+    defaultFontSettings->antialiased = true;
+    defaultFontSettings->dpi = 72;
+    defaultFontSettings->addRanges(ofAlphabet::Korean);
+    defaultFontSettings->addRanges(ofAlphabet::Latin);
+
+    defaultFont.load(*defaultFontSettings);
     //Set up the blank space word
     blankSpaceWord.rawWord = " ";
     blankSpaceWord.width   = defaultFont.stringWidth ("x");

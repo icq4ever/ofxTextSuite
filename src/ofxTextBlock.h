@@ -21,6 +21,7 @@
 #define OFXTEXTBLOCK_H
 
 #include "ofMain.h"
+#include "ofTrueTypeFont.h"
 #include <iterator>
 
 class wordBlock {
@@ -53,6 +54,7 @@ class ofxTextBlock
 
         string          rawText;
         ofTrueTypeFont  defaultFont;
+        ofTrueTypeFontSettings *defaultFontSettings;
         wordBlock       blankSpaceWord;
         float           scale;
 

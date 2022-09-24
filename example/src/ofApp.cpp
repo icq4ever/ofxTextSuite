@@ -3,8 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    myText.init("frabk.ttf", 80);
-    myText.setText("Welcome. L is for Left, while R is for Right. Center it up with C, or hit J to Justify.  Press 1 to wrap constrained on x, or 2 to fit type to the area.");
+    myText.init("Pretendard-Medium-stripped.ttf", 80);
+    myText.setText("안녕하십니까. 동해물과 백두산이 마르고 닯도록. L is for Left, while R is for Right. Center it up with C, or hit J to Justify.  Press 1 to wrap constrained on x, or 2 to fit type to the area.");
 
     //Initially wrap the text to the screen width
     myText.wrapTextX(ofGetWidth());
