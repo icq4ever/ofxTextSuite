@@ -73,7 +73,7 @@ class ofxTextBlock
         void    setColor(int r, int g, int b, int a);
 
         void    draw(float x, float y);                    //Draws left align.
-        void    drawLeft(float x, float y);
+        void    drawLeft(float x, float y, ofColor c);
         void    drawRight(float x, float y);
         void    drawCenter(float x, float y);
         void    drawJustified(float x, float y, float boxWidth);

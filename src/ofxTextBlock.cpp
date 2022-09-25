@@ -13,20 +13,20 @@
  GNU General Public License for more details.
 
  You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ along with this program.  If not, see <http: //www.gnu.org/licenses/>.
 
  ***********************************************************************/
 
 #include "ofxTextBlock.h"
 
-ofxTextBlock::ofxTextBlock()
+ofxTextBlock:: ofxTextBlock()
 {
 
-    scale       =   1.0f;
+    scale = 1.0f;
 
 }
 
-ofxTextBlock::~ofxTextBlock()
+ofxTextBlock:: ~ofxTextBlock()
 {
     //dtor
 }
@@ -34,9 +34,9 @@ ofxTextBlock::~ofxTextBlock()
 void ofxTextBlock::init(string fontLocation, float fontSize){
 
     // defaultFont.loadFont(fontLocation, fontSize, true, true);
-    defaultFontSettings = new ofTrueTypeFontSettings(fontLocation, fontSize);
+    defaultFontSettings              = new ofTrueTypeFontSettings(fontLocation, fontSize);
     defaultFontSettings->antialiased = true;
-    defaultFontSettings->dpi = 72;
+    defaultFontSettings->dpi         = 72;
     defaultFontSettings->addRanges(ofAlphabet::Korean);
     defaultFontSettings->addRanges(ofAlphabet::Latin);
 
@@ -50,18 +50,18 @@ void ofxTextBlock::init(string fontLocation, float fontSize){
 }
 
 void ofxTextBlock::setText(string _inputText){
-    rawText     = _inputText;
+    rawText = _inputText;
     _loadWords();
     wrapTextForceLines(1);
 }
 
 void ofxTextBlock::draw(float x, float y){
 
-    drawLeft(x, y);
+    drawLeft(x, y, ofColor(0));
 
 }
 
-void ofxTextBlock::drawLeft(float x, float y){
+void ofxTextBlock::drawLeft(float x, float y, ofColor c){
 
     string  strToDraw;
     int     currentWordID;
@@ -81,7 +81,7 @@ void ofxTextBlock::drawLeft(float x, float y){
                 drawX = x + currX;
                 drawY = y + (defaultFont.getLineHeight() * (l + 1));
 
-                ofSetColor(words[currentWordID].color.r, words[currentWordID].color.g, words[currentWordID].color.b, words[currentWordID].color.a);
+                ofSetColor(c);
                 glPushMatrix();
                 //glTranslatef(drawX, drawY, 0.0f);
                 glScalef(scale, scale, scale);
@@ -117,8 +117,8 @@ void ofxTextBlock::drawCenter(float x, float y){
             lineWidth = 0;
             for(int w=0;w < lines[l].wordsID.size(); w++)
             {
-                currentWordID = lines[l].wordsID[w];
-                lineWidth += words[currentWordID].width;
+                currentWordID  = lines[l].wordsID[w];
+                lineWidth     += words[currentWordID].width;
             }
 
             for(int w=0;w < lines[l].wordsID.size(); w++)
@@ -167,7 +167,7 @@ void ofxTextBlock::drawJustified(float x, float y, float boxWidth){
         for(int l=0;l < lines.size(); l++)
         {
             //Find number of spaces and width of other words;
-            spacesN = 0;
+            spacesN           = 0;
             nonSpaceWordWidth = 0;
 
             for(int w=0;w < lines[l].wordsID.size(); w++)
@@ -252,7 +252,7 @@ void ofxTextBlock::drawRight(float x, float y){
     }
 }
 
-void ofxTextBlock::_trimLineSpaces()
+void ofxTextBlock:: _trimLineSpaces()
 {
         if (words.size() > 0) {
             //Now delete all leading or ending spaces on each line
@@ -289,7 +289,7 @@ int ofxTextBlock::_getLinedWords(){
 
 void ofxTextBlock::wrapTextArea(float rWidth, float rHeight){
 
-    float tmpScale = 0.0f;
+    float tmpScale      = 0.0f;
     float maxIterations = _getLinedWords();
     float scales[1000];
     scale = 1.0f;  //Reset the scale for the height and width calculations.
@@ -312,7 +312,7 @@ void ofxTextBlock::wrapTextArea(float rWidth, float rHeight){
         }
 
         //Now see which is biggest
-        int maxIndex = 1;
+        int  maxIndex        = 1;
         bool bScaleAvailable = false;
 
         for (int i=1; i <= maxIterations; i++) {
@@ -332,7 +332,7 @@ void ofxTextBlock::wrapTextArea(float rWidth, float rHeight){
             scale = (float)rHeight / (float)getHeight();
         }
 
-        float persistScale = scale; //Need to persist the scale as the wrapTextForceLines will overwrite.
+        float persistScale = scale;  //Need to persist the scale as the wrapTextForceLines will overwrite.
         wrapTextForceLines(maxIndex);
         scale = persistScale;
 
@@ -351,7 +351,7 @@ bool ofxTextBlock::wrapTextForceLines(int linesN){
 
         float lineWidth = _getWidthOfWords() * (1.1f / (float)linesN);
 
-        int curLines = 0;
+        int  curLines  = 0;
         bool bGotLines = false;
 
         //keep increasing the line width until we get the desired number of lines.
@@ -360,7 +360,7 @@ bool ofxTextBlock::wrapTextForceLines(int linesN){
             curLines = wrapTextX(lineWidth);
             if (curLines == linesN) return true;
             if (curLines > linesN) return false;
-            lineWidth-=10;
+            lineWidth -= 10;
 
         }
 
@@ -375,25 +375,21 @@ int ofxTextBlock::wrapTextX(float lineWidth){
 
     if (words.size() > 0) {
 
-        float   runningWidth = 0.0f;
+        float runningWidth = 0.0f;
 
         lines.clear();
 
-        bool        newLine = true;
+        bool newLine = true;
         lineBlock   tmpLine;
         tmpLine.wordsID.clear();
-        int         activeLine = 0;
+        int activeLine = 0;
 
-        for(int i=0;i < words.size(); i++)
-        {
-
+        for(int i=0;i < words.size(); i++){
             runningWidth += words[i].width;
 
-            if (runningWidth <= lineWidth) {
+        if (runningWidth <= lineWidth) {
                 newLine = false;
-            }
-            else {
-
+        } else {
                 newLine = true;
                 lines.push_back(tmpLine);
                 tmpLine.wordsID.clear();
@@ -422,13 +418,12 @@ void ofxTextBlock::_loadWords(){
 
     vector<string> tokens;
     copy(istream_iterator<string>(iss),
-             istream_iterator<string>(),
-             back_inserter<vector<string> >(tokens));
+        istream_iterator<string>(),
+        back_inserter<vector<string> >(tokens));
 
     words.clear();
 
-    for(int i=0;i < tokens.size(); i++)
-    {
+    for(int i=0;i < tokens.size(); i++) {
         tmpWord.rawWord = tokens.at(i);
         tmpWord.width   = defaultFont.stringWidth(tmpWord.rawWord);
         tmpWord.height  = defaultFont.stringHeight(tmpWord.rawWord);
@@ -442,8 +437,6 @@ void ofxTextBlock::_loadWords(){
     {
         ofLog(OF_LOG_VERBOSE, "Loaded word: %i, %s\n", i, words[i].rawWord.c_str());
     }
-
-
 }
 
 float ofxTextBlock::_getWidthOfWords(){
@@ -468,8 +461,8 @@ float ofxTextBlock::getWidth(){
 
     int   currentWordID;
 
-    float currX = 0.0f;
-    float maxWidth  = 0.0f;
+    float currX    = 0.0f;
+    float maxWidth = 0.0f;
 
     if (words.size() > 0) {
 
@@ -477,11 +470,11 @@ float ofxTextBlock::getWidth(){
         {
             for(int w=0;w < lines[l].wordsID.size(); w++)
             {
-                currentWordID = lines[l].wordsID[w];
-                currX += words[currentWordID].width;
+                currentWordID  = lines[l].wordsID[w];
+                currX         += words[currentWordID].width;
             }
             maxWidth = MAX(maxWidth, currX);
-            currX = 0.0f;
+            currX    = 0.0f;
         }
         return maxWidth * scale;
     }
@@ -513,9 +506,8 @@ void ofxTextBlock::setColor(int r, int g, int b, int a){
     tmpColor.a = a;
 
     if (words.size() > 0) {
-        for(int i=0;i < words.size(); i++)
-        {
-           words[i].color = tmpColor;
+        for(int i=0;i < words.size(); i++) {
+            words[i].color = tmpColor;
 
         }
     }
