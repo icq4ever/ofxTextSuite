@@ -30,7 +30,6 @@ class wordBlock {
         float           width;
         float           height;
         ofColor         color;
-
 };
 
 
@@ -44,7 +43,11 @@ class lineBlock {
 };
 
 //Just a helpful set of enumerated constants.
-enum TextBlockAlignment { OF_TEXT_ALIGN_LEFT, OF_TEXT_ALIGN_RIGHT, OF_TEXT_ALIGN_JUSTIFIED, OF_TEXT_ALIGN_CENTER };
+enum TextBlockAlignment { 
+    OF_TEXT_ALIGN_LEFT, 
+    OF_TEXT_ALIGN_RIGHT, 
+    OF_TEXT_ALIGN_JUSTIFIED, 
+    OF_TEXT_ALIGN_CENTER };
 
 class ofxTextBlock
 {
@@ -72,11 +75,11 @@ class ofxTextBlock
         void    setLineHeight(float lineHeight);
         void    setColor(int r, int g, int b, int a);
 
-        void    draw(float x, float y);                    //Draws left align.
+        void    draw(float x, float y, ofColor c);                    //Draws left align.
         void    drawLeft(float x, float y, ofColor c);
-        void    drawRight(float x, float y);
-        void    drawCenter(float x, float y);
-        void    drawJustified(float x, float y, float boxWidth);
+        void    drawRight(float x, float y, ofColor c);
+        void    drawCenter(float x, float y, ofColor c);
+        void    drawJustified(float x, float y, ofColor c, float boxWidth);
 
 
         void    forceScale(float _scale);
@@ -85,7 +88,6 @@ class ofxTextBlock
         float   getHeight();
 
     protected:
-
         void    _loadWords();
 
         void    _trimLineSpaces();

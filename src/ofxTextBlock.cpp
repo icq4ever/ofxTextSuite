@@ -55,9 +55,9 @@ void ofxTextBlock::setText(string _inputText){
     wrapTextForceLines(1);
 }
 
-void ofxTextBlock::draw(float x, float y){
+void ofxTextBlock::draw(float x, float y, ofColor c){
 
-    drawLeft(x, y, ofColor(0));
+    drawLeft(x, y, ofColor(c));
 
 }
 
@@ -93,12 +93,11 @@ void ofxTextBlock::drawLeft(float x, float y, ofColor c){
 
             }
             currX = 0;
-
         }
     }
 }
 
-void ofxTextBlock::drawCenter(float x, float y){
+void ofxTextBlock::drawCenter(float x, float y, ofColor c){
 
     string  strToDraw;
     int     currentWordID;
@@ -128,7 +127,8 @@ void ofxTextBlock::drawCenter(float x, float y){
                 drawX = -(lineWidth / 2) + currX;
                 drawY = defaultFont.getLineHeight() * (l + 1);
 
-                ofSetColor(words[currentWordID].color.r, words[currentWordID].color.g, words[currentWordID].color.b, words[currentWordID].color.a);
+                // ofSetColor(words[currentWordID].color.r, words[currentWordID].color.g, words[currentWordID].color.b, words[currentWordID].color.a);
+                ofSetColor(c);
 
                 glPushMatrix();
 
@@ -149,7 +149,7 @@ void ofxTextBlock::drawCenter(float x, float y){
     }
 }
 
-void ofxTextBlock::drawJustified(float x, float y, float boxWidth){
+void ofxTextBlock::drawJustified(float x, float y, ofColor c, float boxWidth){
 
     string  strToDraw;
     int     currentWordID;
@@ -186,7 +186,8 @@ void ofxTextBlock::drawJustified(float x, float y, float boxWidth){
                 drawX = currX;
                 drawY = defaultFont.getLineHeight() * (l + 1);
 
-                ofSetColor(words[currentWordID].color.r, words[currentWordID].color.g, words[currentWordID].color.b, words[currentWordID].color.a);
+                // ofSetColor(words[currentWordID].color.r, words[currentWordID].color.g, words[currentWordID].color.b, words[currentWordID].color.a);
+                ofSetColor(c);
                 glPushMatrix();
                 //Move to top left point using pre-scaled co-ordinates
                 glTranslatef(x, y, 0.0f);
@@ -210,7 +211,7 @@ void ofxTextBlock::drawJustified(float x, float y, float boxWidth){
     }
 }
 
-void ofxTextBlock::drawRight(float x, float y){
+void ofxTextBlock::drawRight(float x, float y, ofColor c){
 
     string  strToDraw;
     int     currentWordID;
@@ -224,15 +225,15 @@ void ofxTextBlock::drawRight(float x, float y){
         for(int l=0;l < lines.size(); l++)
         {
 
-            for(int w=lines[l].wordsID.size() - 1; w >= 0; w--)
-            {
+            for(int w=lines[l].wordsID.size() - 1; w >= 0; w--){
 
                 currentWordID = lines[l].wordsID[w];
 
                 drawX = -currX - words[currentWordID].width;
                 drawY = defaultFont.getLineHeight() * (l + 1);
 
-                ofSetColor(words[currentWordID].color.r, words[currentWordID].color.g, words[currentWordID].color.b, words[currentWordID].color.a);
+                // ofSetColor(words[currentWordID].color.r, words[currentWordID].color.g, words[currentWordID].color.b, words[currentWordID].color.a);
+                ofSetColor(c);
 
                 glPushMatrix();
 
@@ -252,8 +253,7 @@ void ofxTextBlock::drawRight(float x, float y){
     }
 }
 
-void ofxTextBlock:: _trimLineSpaces()
-{
+void ofxTextBlock:: _trimLineSpaces(){
         if (words.size() > 0) {
             //Now delete all leading or ending spaces on each line
             for(int l=0;l < lines.size(); l++)
