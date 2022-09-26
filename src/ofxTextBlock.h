@@ -25,76 +25,76 @@
 #include <iterator>
 
 class wordBlock {
-    public:
-        string          rawWord;
-        float           width;
-        float           height;
-        ofColor         color;
+	public:
+		string          rawWord;
+		float           width;
+		float           height;
+		ofColor         color;
 };
 
 
 class lineBlock {
-    public:
-        vector<int>   wordsID;
+	public:
+		vector<int>   wordsID;
 
-        float   width;
-        float   height;
+		float   width;
+		float   height;
 
 };
 
 //Just a helpful set of enumerated constants.
 enum TextBlockAlignment { 
-    OF_TEXT_ALIGN_LEFT, 
-    OF_TEXT_ALIGN_RIGHT, 
-    OF_TEXT_ALIGN_JUSTIFIED, 
-    OF_TEXT_ALIGN_CENTER };
+	OF_TEXT_ALIGN_LEFT, 
+	OF_TEXT_ALIGN_RIGHT, 
+	OF_TEXT_ALIGN_JUSTIFIED, 
+	OF_TEXT_ALIGN_CENTER };
 
 class ofxTextBlock
 {
-    public:
-        ofxTextBlock();
-        virtual ~ofxTextBlock();
+	public:
+		ofxTextBlock();
+		virtual ~ofxTextBlock();
 
-        string          rawText;
-        ofTrueTypeFont  defaultFont;
-        ofTrueTypeFontSettings *defaultFontSettings;
-        wordBlock       blankSpaceWord;
-        float           scale;
+		string          rawText;
+		ofTrueTypeFont  defaultFont;
+		ofTrueTypeFontSettings *defaultFontSettings;
+		wordBlock       blankSpaceWord;
+		float           scale;
 
-        vector<wordBlock>   words;
-        vector<lineBlock>   lines;
+		vector<wordBlock>   words;
+		vector<lineBlock>   lines;
 
-        void    init(string fontLocation, float fontSize);
+		void    init(string fontLocation, float fontSize);
 
-        void    setText(string _inputText);
+		void    setText(string _inputText);
 
-        int     wrapTextX(float lineWidth);                 //Returns the number of lines it formed.
-        void    wrapTextArea(float rWidth, float rHeight);
-        bool    wrapTextForceLines(int linesN);
+		int     wrapTextX(float lineWidth);                 //Returns the number of lines it formed.
+		void    wrapTextArea(float rWidth, float rHeight);
+		bool    wrapTextForceLines(int linesN);
 
-        void    setLineHeight(float lineHeight);
-        void    setColor(int r, int g, int b, int a);
+		void    setLineHeight(float lineHeight);
+		void    setColor(int r, int g, int b, int a);
 
-        void    draw(float x, float y, ofColor c);                    //Draws left align.
-        void    drawLeft(float x, float y, ofColor c);
-        void    drawRight(float x, float y, ofColor c);
-        void    drawCenter(float x, float y, ofColor c);
-        void    drawJustified(float x, float y, ofColor c, float boxWidth);
+		void    draw(float x, float y, ofColor c);                    //Draws left align.
+		void    drawLeft(float x, float y, ofColor c);
+		void    drawRight(float x, float y, ofColor c);
+		void    drawCenter(float x, float y, ofColor c);
+		void    drawJustified(float x, float y, ofColor c, float boxWidth);
 
 
-        void    forceScale(float _scale);
+		void    forceScale(float _scale);
 
-        float   getWidth();
-        float   getHeight();
+		float   getWidth();
+		float   getHeight();
 
-    protected:
-        void    _loadWords();
+	protected:
+		void    _loadWords();
 
-        void    _trimLineSpaces();
-        float   _getWidthOfWords();
-        int     _getLinedWords();
+		void    _trimLineSpaces();
+		float   _getWidthOfWords();
+		int     _getLinedWords();
 
-    private:
+	private:
 };
 
 #endif // OFXTEXTBLOCK_H
