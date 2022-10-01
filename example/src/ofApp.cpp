@@ -22,16 +22,16 @@ void ofApp::draw(){
     switch (alignment) {
 
         case OF_TEXT_ALIGN_LEFT:
-            myText.draw(0,0);
+            myText.render(0,0, ofColor(255));
             break;
         case OF_TEXT_ALIGN_RIGHT:
-            myText.drawRight(ofGetWidth(), 0);
+            myText.renderRight(ofGetWidth(), 0, ofColor(255));
             break;
         case OF_TEXT_ALIGN_CENTER:
-            myText.drawCenter(ofGetWidth()/2,0);
+            myText.renderCenter(ofGetWidth()/2,0, ofColor(255));
             break;
         case OF_TEXT_ALIGN_JUSTIFIED:
-            myText.drawJustified(0, 0, myText.getWidth());
+            myText.renderJustified(0, 0, ofColor(255), myText.getWidth());
             break;
 
     }

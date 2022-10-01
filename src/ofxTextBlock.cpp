@@ -49,11 +49,11 @@ void ofxTextBlock::setText(string _inputText){
 	wrapTextForceLines(1);
 }
 
-void ofxTextBlock::draw(float x, float y, ofColor c){
-	drawLeft(x, y, ofColor(c));
+void ofxTextBlock::render(float x, float y, ofColor c){
+	renderLeft(x, y, ofColor(c));
 }
 
-void ofxTextBlock::drawLeft(float x, float y, ofColor c){
+void ofxTextBlock::renderLeft(float x, float y, ofColor c){
 	string  strToDraw;
 	int     currentWordID;
 	float   drawX;
@@ -84,7 +84,7 @@ void ofxTextBlock::drawLeft(float x, float y, ofColor c){
 	}
 }
 
-void ofxTextBlock::drawCenter(float x, float y, ofColor c){
+void ofxTextBlock::renderCenter(float x, float y, ofColor c){
 
 	string  strToDraw;
 	int     currentWordID;
@@ -128,7 +128,7 @@ void ofxTextBlock::drawCenter(float x, float y, ofColor c){
 	}
 }
 
-void ofxTextBlock::drawJustified(float x, float y, ofColor c, float boxWidth){
+void ofxTextBlock::renderJustified(float x, float y, ofColor c, float boxWidth){
 	string  strToDraw;
 	int     currentWordID;
 	float   drawX;
@@ -181,7 +181,7 @@ void ofxTextBlock::drawJustified(float x, float y, ofColor c, float boxWidth){
 	}
 }
 
-void ofxTextBlock::drawRight(float x, float y, ofColor c){
+void ofxTextBlock::renderRight(float x, float y, ofColor c){
 	string  strToDraw;
 	int     currentWordID;
 	float   drawX;

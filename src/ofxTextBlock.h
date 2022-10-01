@@ -61,6 +61,11 @@ class ofxTextBlock
 		wordBlock       blankSpaceWord;
 		float           scale;
 
+		ofFbo			*fbo;
+		ofPixels		*pixels;
+		ofImage			*image;
+		bool			isTextureReadt;	
+
 		vector<wordBlock>   words;
 		vector<lineBlock>   lines;
 
@@ -75,12 +80,15 @@ class ofxTextBlock
 		void    setLineHeight(float lineHeight);
 		void    setColor(int r, int g, int b, int a);
 
-		void    draw(float x, float y, ofColor c);                    //Draws left align.
-		void    drawLeft(float x, float y, ofColor c);
-		void    drawRight(float x, float y, ofColor c);
-		void    drawCenter(float x, float y, ofColor c);
-		void    drawJustified(float x, float y, ofColor c, float boxWidth);
-
+		void    render(float x, float y, ofColor c);                    //Draws left align.
+		void    renderLeft(float x, float y, ofColor c);
+		void    renderRight(float x, float y, ofColor c);
+		void    renderCenter(float x, float y, ofColor c);
+		void    renderJustified(float x, float y, ofColor c, float boxWidth);
+		
+		void	initTexture();
+		void	resetTexture();
+		void 	draw(float x, float y);
 
 		void    forceScale(float _scale);
 
