@@ -64,14 +64,17 @@ class ofxTextBlock
 		ofFbo			*fbo;
 		ofPixels		*pixels;
 		ofImage			*image;
-		bool			isTextureReadt;	
 
 		vector<wordBlock>   words;
 		vector<lineBlock>   lines;
 
 		void    init(string fontLocation, float fontSize);
-
 		void    setText(string _inputText);
+
+		bool	bTextureReady;
+		void	setTexture();		// set texture (width & height), the set texture ready
+		void	resetTexture();		// clear texture
+		void 	draw(float x, float y);	// draw renderedTexture
 
 		int     wrapTextX(float lineWidth);                 //Returns the number of lines it formed.
 		void    wrapTextArea(float rWidth, float rHeight);
@@ -85,10 +88,6 @@ class ofxTextBlock
 		void    renderRight(float x, float y, ofColor c);
 		void    renderCenter(float x, float y, ofColor c);
 		void    renderJustified(float x, float y, ofColor c, float boxWidth);
-		
-		void	initTexture();
-		void	resetTexture();
-		void 	draw(float x, float y);
 
 		void    forceScale(float _scale);
 

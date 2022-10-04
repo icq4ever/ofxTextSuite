@@ -21,6 +21,7 @@
 
 ofxTextBlock:: ofxTextBlock(){
 	scale = 1.0f;
+	bTextureReady = false;
 }
 
 ofxTextBlock:: ~ofxTextBlock(){
@@ -47,6 +48,24 @@ void ofxTextBlock::setText(string _inputText){
 	rawText = _inputText;
 	_loadWords();
 	wrapTextForceLines(1);
+}
+
+void ofxTextBlock::setTexture(){
+
+	bTextureReady = true;
+}		
+void ofxTextBlock::resetTexture(){
+	delete fbo;
+	delete pixels;
+	delete image;
+
+	bTextureReady = false;
+}
+
+void ofxTextBlock::draw(float x, float y){
+	ofPushMatrix();
+
+	ofPopMatrix();
 }
 
 void ofxTextBlock::render(float x, float y, ofColor c){
