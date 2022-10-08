@@ -326,7 +326,7 @@ bool ofxTextBlock::wrapTextForceLines(int linesN){
 			lineWidth -= 10;
 		}
 	}
-	return bGotLines;
+	return true;
 }
 
 
